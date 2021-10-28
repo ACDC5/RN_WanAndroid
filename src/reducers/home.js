@@ -1,6 +1,8 @@
 /**
  * Created by hjs on 2019-09-17
  */
+
+/**HomeScreen.js的reducer层*/
 import actionTypes from '../actions/actionType';
 
 const initialStore = {
@@ -13,14 +15,19 @@ const initialStore = {
   websites: [], // 常用网站数据
 };
 
+//当state改变时，派发action
 const home = (state = initialStore, action) => {
   switch (action.type) {
     case actionTypes.FETCH_HOME_BANNER:
+      //TODO 首页轮播图在reducer层的处理
+
       return {
+        //小技巧(替换旧对象中的值，可查看React Native.txt):
         ...state,
-        homeBanner: action.homeBanner,
+        homeBanner: action.homeBanner, //拿到获取的轮播图数据
       };
     case actionTypes.FETCH_HOME_LIST:
+      // 首页轮播图下面的展示list
       return {
         ...state,
         page: 1,

@@ -22,6 +22,7 @@ import {
   cancelMyCollectArticle,
   getMyCoinList,
   getMyCoinInfo,
+  cst_FetchData,
 } from '../api';
 import store from '../store';
 import {
@@ -58,12 +59,26 @@ import {
   getMyCoinListMoreAction,
   getMyCoinInfoAction,
   getSwitchAPPLanguageAction,
+  getPlazaContent,
+  getPlazaFailureAction,
 } from './action-creator';
 import {i18n, showToast} from '../utils/Utility';
 import AuthUtil from '../utils/AuthUtil';
 import LanguageUtil from '../utils/LanguageUtil';
 
+// 用户在进入“流行”导航页后，触发这个函数，由此触发redux的action动作，
+export async function cst_PullPlaza() {
+  // 1、cst_FetchData函数发起网络请求，
+  await cst_FetchData()
+      // 2、getPlazaContent函数获取服务器返回的数据后，触发指定action类型和函数，并更新store
+      .then(res => store.dispatch(getPlazaContent(res.data)))
+      .catch(e => store.dispatch(getPlazaFailureAction()));
+}
+
 export function fetchHomeBanner() {
+  //store.dispatch将拿到最新数据返回给reducer的state，相应的组件将随着state的更新而更新
+  //执行step:1。先进入getHomeBanner函数获取轮播图数据，返回数据后调用后续的回调函数
+  // 2.进入getHomeBannerAction(action层)，返回后再进入reducers目录下的home.js(reducer层)
   getHomeBanner().then(res => store.dispatch(getHomeBannerAction(res.data)));
 }
 
@@ -73,6 +88,7 @@ export async function fetchHomeList() {
     .catch(e => store.dispatch(getHomeListFailureAction()));
 }
 
+// 首页上拉获取更多数据
 export function fetchHomeListMore(page) {
   getHomeList(page)
     .then(res => store.dispatch(getHomeListMoreAction(res.data)))
@@ -120,6 +136,8 @@ export async function changeThemeColor(color) {
   store.dispatch(getChangeThemeColorAction(color));
 }
 
+// 初始化缓存数据（顺序为：执行getInitialAuthInfoAction，然后执行dispatch函数，
+// reducer自动分配执行和actionType类型一致的reducer函数）
 export function toInitialAuthInfo(initialInfo) {
   store.dispatch(getInitialAuthInfoAction(initialInfo));
 }

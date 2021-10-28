@@ -8,6 +8,7 @@ import qs from 'querystring';
  * 网络请求工具类
  */
 export default class httpUtil {
+  // 这里的url参数即是基础的接口域名:https://www.wanandroid.com。定义在service目录下的setAxios.js
   static get(url, params) {
     return new Promise(async (resolve, reject) => {
       try {

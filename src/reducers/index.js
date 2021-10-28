@@ -11,6 +11,7 @@ import project from './project';
 import search from './search';
 import collect from './collect';
 import coin from './coin';
+import plaza from './plaza'
 
 export default combineReducers({
   home,
@@ -22,4 +23,5 @@ export default combineReducers({
   search,
   collect,
   coin,
+  plaza,
 });

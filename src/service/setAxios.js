@@ -33,7 +33,7 @@ export function setAxios() {
   axios.defaults.headers = headers;
   axios.defaults.baseURL = BASE_URL;
   axios.defaults.timeout = 6000; // 请求超时时间
-  axios.interceptors.request.use(
+  axios.interceptors.request.use( //添加一个请求拦截器
     async config => {
       const Cookie = await AuthUtil.getCookie();
       if (config.method === 'post') {
@@ -52,7 +52,7 @@ export function setAxios() {
       return Promise.reject(error);
     },
   );
-  axios.interceptors.response.use(
+  axios.interceptors.response.use(//添加一个响应拦截器
     async response => {
       const {data} = response;
       await handleShowResponseLog(response);

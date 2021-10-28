@@ -17,18 +17,20 @@ import {i18n} from '../utils/Utility';
 
 class BottomTabBar extends PureComponent {
   render() {
-    const {route, focused, themeColor} = this.props;
+    const {route, focused, themeColor,} = this.props;
+
     const {routeName} = route;
+    // alert(themeColor+focused+routeName)
     let tabBarLabel, tabBarIconName, tabBarIconSize;
     switch (routeName) {
       case 'Home':
         tabBarLabel = i18n('home');
-        tabBarIconName = 'ios-home';
+        tabBarIconName = 'android-home';
         tabBarIconSize = dp(50);
         break;
       case 'System':
         tabBarLabel = i18n('system');
-        tabBarIconName = 'ios-school';
+        tabBarIconName = 'android-school';
         tabBarIconSize = dp(55);
         break;
       case 'WxArticle':
@@ -39,6 +41,13 @@ class BottomTabBar extends PureComponent {
       case 'Guide':
         tabBarLabel = i18n('Navigation');
         tabBarIconName = 'ios-rocket';
+        tabBarIconSize = dp(50);
+        break;
+      case 'TestHot':
+        //调用i18n函数时，必须配置好相应的文件(此app的语言配置是LanguageUtil.js);
+        // i18n函数的参数，必须在语种配置文件(如zh-Hans.js)中配置好对应语种
+        tabBarLabel = i18n('testHot');
+        tabBarIconName = 'android-school';
         tabBarIconSize = dp(50);
         break;
       default:
@@ -62,18 +71,18 @@ class BottomTabBar extends PureComponent {
         </Text>
       </View>
     );
-    if (isAndroid) {
-      return (
-        <TouchableNativeFeedback
-          background={TouchableNativeFeedback.Ripple(
-            'rgba(50,50,50,0.1)',
-            true,
-          )}
-          {...this.props}>
-          {content}
-        </TouchableNativeFeedback>
-      );
-    }
+    // TODO 新增的导航按钮没有显示
+    // if (isAndroid) {
+    //   return (
+    //     <TouchableNativeFeedback
+    //       background={TouchableNativeFeedback.Ripple(
+    //         'rgba(50,50,50,0.1)', true,)}
+    //       {...this.props}
+    //     >
+    //       {content}
+    //     </TouchableNativeFeedback>
+    //   );
+    // }
     return (
       <TouchableOpacity activeOpacity={0.8} {...this.props}>
         {content}

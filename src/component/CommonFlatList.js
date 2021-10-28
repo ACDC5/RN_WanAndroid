@@ -8,6 +8,7 @@ import {
   RefreshControl,
   StyleSheet,
   TouchableWithoutFeedback,
+  Text
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Color from '../utils/Color';
@@ -25,7 +26,7 @@ const defaultProps = {
 };
 
 /**
- * FlatList通用组件
+ * FlatList通用组件。相当于一个数据容器
  */
 class CommonFlatList extends PureComponent {
   constructor(props) {
@@ -52,9 +53,11 @@ class CommonFlatList extends PureComponent {
   }
 
   render() {
+    // 来自父组件的函数和属性
     const {isRefreshing, toRefresh, themeColor} = this.props;
     return (
       <View style={styles.container}>
+        {/*<Text>传给通用组件的值：{this.props.data[0].title}</Text>*/}
         <FlatList
           ref={comp => {
             this.flatListRef = comp;
@@ -62,6 +65,8 @@ class CommonFlatList extends PureComponent {
           onScroll={this._onScroll}
           onEndReachedThreshold={0.2}
           refreshControl={
+            // RefreshControl组件可以用在 ScrollView 或 FlatList 内部，
+            // 为其添加下拉刷新的功能。下拉会触发一个onRefresh事件
             <RefreshControl
               refreshing={isRefreshing}
               onRefresh={toRefresh}

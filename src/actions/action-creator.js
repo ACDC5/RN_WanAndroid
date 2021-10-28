@@ -3,10 +3,25 @@
  */
 import actionTypes from './actionType';
 
+// 请求广场列表
+// plazaContent即是从服务器获取的数据，action被触发后调用这个函数，以更新reducer层的数据
+export function getPlazaContent(plazaContent) {
+  return {
+    type:actionTypes.FETCH_PLAZA_CONTENT,
+    plazaContent,
+  };
+}
+
+export function getPlazaFailureAction() {
+  return {
+    type:actionTypes.FETCH_PLAZA_VALUE_FAILURE,
+  }
+}
+
 export function getHomeBannerAction(homeBanner) {
   return {
     type: actionTypes.FETCH_HOME_BANNER,
-    homeBanner,
+    homeBanner,//将轮播图数据传给reducer层;当对象的key和value同名时可简写
   };
 }
 
@@ -63,6 +78,7 @@ export function getChangeThemeColorAction(themeColor) {
   };
 }
 
+// TODO 初始化缓存数据（reducer的action层）
 export function getInitialAuthInfoAction(initialInfo) {
   return {
     type: actionTypes.INITIAL_AUTH_INFO,

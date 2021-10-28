@@ -23,6 +23,12 @@ export function cancelCollectArticle(id) {
   return httpUtil.post(`lg/uncollect_originId/${id}/json`, {id});
 }
 
+// 广场列表
+export function cst_FetchData(page= 0) {
+  // TODO 为什么不是用单引号?
+  return httpUtil.get(`user_article/list/${page}/json`)
+}
+
 /**
  * 我的收藏页-取消收藏
  * @param id:拼接在链接上

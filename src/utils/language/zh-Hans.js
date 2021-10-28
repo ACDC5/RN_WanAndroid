@@ -49,5 +49,6 @@ export default {
   'Have been collected': '已收藏',
   Article: '文章',
   home: '首页',
+  testHot:'流行',
   'all-loaded': '已加载全部',
 };

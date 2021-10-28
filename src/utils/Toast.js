@@ -28,6 +28,7 @@ class Toast extends Component {
       text: '',
       opacityValue: new Animated.Value(this.props.opacity),
     };
+    console.log('fix这些shit');
   }
 
   show(text, duration, callback) {
@@ -79,6 +80,7 @@ class Toast extends Component {
     }, delay);
   }
 
+  // 组件卸载时
   componentWillUnmount() {
     this.animation && this.animation.stop();
     this.timer && clearTimeout(this.timer);
@@ -98,6 +100,8 @@ class Toast extends Component {
         break;
     }
 
+    // TODO 1
+    console.log('这是内容页面吗' + this.state.isShow);
     const view = this.state.isShow ? (
       <View style={[styles.container, {top: pos}]} pointerEvents="none">
         <Animated.View
@@ -137,6 +141,7 @@ const styles = StyleSheet.create({
   },
 });
 
+// 类型检查
 Toast.propTypes = {
   style: ViewPropTypes.style,
   position: PropTypes.oneOf(['top', 'center', 'bottom']),

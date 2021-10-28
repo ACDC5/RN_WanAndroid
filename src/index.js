@@ -7,6 +7,7 @@ import {getRealDP as dp} from './utils/screenUtil';
 // import StackViewStyleInterpolator from 'react-navigation-stack/lib/commonjs/views/StackView/StackViewStyleInterpolator';
 import BottomTabBar from './component/BottomTabBar';
 // Screen
+import Test_Hot from "./screen/tabs/Test-Hot";
 import HomeScreen from './screen/tabs/HomeScreen';
 import SystemScreen from './screen/tabs/SystemScreen';
 import WxArticleScreen from './screen/tabs/WxArticleScreen';
@@ -26,6 +27,7 @@ import CoinDetailScreen from './screen/drawer/CoinDetailScreen';
 import SettingScreen from './screen/drawer/SettingScreen';
 import LanguageScreen from './screen/drawer/LanguageScreen';
 
+// 导航配置
 const TabScreens = createBottomTabNavigator(
   {
     Home: HomeScreen,
@@ -33,9 +35,13 @@ const TabScreens = createBottomTabNavigator(
     WxArticle: WxArticleScreen,
     Guide: GuideScreen,
     Project: ProjectScreen,
+    TestHot: Test_Hot
   },
   {
     defaultNavigationOptions: {
+        //底部导航按钮图标的大小，全球化等信息合一的组件
+        //这里的props数据来自store，
+        //因为这个导航配置文件(AppNavigator)是在App.js中被<Provider>包裹的
       tabBarButtonComponent: props => <BottomTabBar {...props} />,
     },
     tabBarOptions: {
@@ -49,6 +55,7 @@ const TabScreens = createBottomTabNavigator(
   },
 );
 
+//左侧抽屉导航栏
 const drawerNavigator = createDrawerNavigator(
   {
     Tabs: TabScreens,
@@ -64,6 +71,7 @@ const drawerNavigator = createDrawerNavigator(
   },
 );
 
+// 抽屉式导航(栈堆)
 const RootStack = createStackNavigator(
   {
     Home: drawerNavigator,

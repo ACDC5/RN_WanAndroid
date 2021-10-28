@@ -49,5 +49,6 @@ export default {
   'Have been collected': 'Have been collected',
   Article: 'Article',
   home: 'Home',
+  testHot:'testHot',
   'all-loaded': 'All loaded',
 };

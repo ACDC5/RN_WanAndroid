@@ -20,6 +20,10 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+./node_modules
+.eslintrc.js
+
+
 
 # Android/IntelliJ
 #
