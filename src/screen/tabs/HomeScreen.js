@@ -89,7 +89,7 @@ class HomeScreen extends PureComponent {
   }
 
   renderHeader() {
-    // 获取父组件传过来的指定的值（这里的this.props可能是redux的action层，即home.js文件）
+    // 获取父组件传过来的指定的值（这里的this.props可能是redux的reducer层，即home.js文件）
     const {navigation, homeBanner} = this.props;
     return (
       <View>
@@ -112,8 +112,6 @@ class HomeScreen extends PureComponent {
   // 这里的渲染函数只负责展示数据,几乎没有调用任何业务函数
   render() {
     //this.props...就是在通过mapStateToProps函数获取store中的数据
-    // alert(this.props.isLogin);
-    console.log('@@',this.prop)
     const {navigation, dataSource} = this.props;
     console.log('主页的数据源不是对象吗 '+ dataSource + '---导航' + navigation)
     return (
@@ -162,6 +160,8 @@ const mapStateToProps = state => {
 };
 
 //概念：
-// 通过connect函数将UI组件和数据绑定在一起。通过映射关系从store获取数据(mapStateToProps)
+// 通过connect函数将UI组件(HomeScreen)和数据mapStateToProps绑定在一起。
+// 通过映射关系从store获取数据(mapStateToProps)
+
 //UI组件HomeScreen
 export default connect(mapStateToProps)(HomeScreen);

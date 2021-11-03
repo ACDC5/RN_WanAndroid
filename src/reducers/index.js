@@ -12,9 +12,9 @@ import search from './search';
 import collect from './collect';
 import coin from './coin';
 import plaza from './plaza'
-
+// 合并多个reducers为一个总的reducer
 export default combineReducers({
-  home,
+  home,//当对象的key:value同名，可以只写一个(对象简写形式)
   user,
   system,
   wxArticle,

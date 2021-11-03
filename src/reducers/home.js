@@ -20,7 +20,6 @@ const home = (state = initialStore, action) => {
   switch (action.type) {
     case actionTypes.FETCH_HOME_BANNER:
       //TODO 首页轮播图在reducer层的处理
-
       return {
         //小技巧(替换旧对象中的值，可查看React Native.txt):
         ...state,

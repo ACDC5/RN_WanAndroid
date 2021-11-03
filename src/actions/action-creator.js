@@ -18,12 +18,14 @@ export function getPlazaFailureAction() {
   }
 }
 
-export function getHomeBannerAction(homeBanner) {
-  return {
-    type: actionTypes.FETCH_HOME_BANNER,
-    homeBanner,//将轮播图数据传给reducer层;当对象的key和value同名时可简写
-  };
-}
+//TODO 2021-10-28 改为箭头函数
+export const getHomeBannerAction = homeBanner => (
+    //将轮播图数据传给reducer层;当对象的key和value同名时可简写
+    {type: actionTypes.FETCH_HOME_BANNER, homeBanner,}
+)
+
+
+
 
 export function getHomeListAction(homeList) {
   return {
